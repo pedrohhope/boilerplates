@@ -87,6 +87,28 @@ Interactive docs at `http://localhost:3000/api-docs`.
 | `JWT_REFRESH_SECRET`     | Secret for refresh tokens                  | —             |
 | `JWT_REFRESH_EXPIRES_IN` | Refresh token TTL                          | `30d`         |
 
+## Working with AI Tools
+
+This project includes [`docs/ai-guide.md`](docs/ai-guide.md) — a reference document written for AI assistants (Claude, Cursor, Copilot, etc.) and developers working alongside them.
+
+It covers architecture decisions, naming conventions, critical patterns (like always importing `z` from the shared lib), how to add new modules, database usage, and OpenAPI registration.
+
+**Load it as context before asking an AI to add features or make changes:**
+
+```
+Use docs/ai-guide.md as context for this project.
+```
+
+### Automatic context per tool
+
+| File | Tool | How it works |
+| ---- | ---- | ------------ |
+| `CLAUDE.md` | Claude Code | Loaded automatically at the start of every conversation |
+| `.cursor/rules/main.mdc` | Cursor | Applied automatically to every `src/**/*.ts` file change |
+| `docs/ai-guide.md` | Any other AI | Paste manually or reference with *"use docs/ai-guide.md as context"* |
+
+All three files share the same conventions — `CLAUDE.md` and `.cursor/rules/main.mdc` are compact versions optimized for automatic loading, while `docs/ai-guide.md` is the full reference with examples.
+
 ## Scripts
 
 ```bash
